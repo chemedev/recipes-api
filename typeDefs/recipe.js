@@ -6,6 +6,7 @@ module.exports = gql`
     getOneRecipe(id: ID!): Recipe
     getMyRecipes: [Recipe!]
     getRecipesByName(name: String!): [Recipe!]
+    getRecipesByIngredient(ingredient: String!): [Recipe!]
   }
 
   input createRecipeInput {

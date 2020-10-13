@@ -14,11 +14,16 @@ app.use(cors())
 app.use(express.json())
 
 //? Apollo Server
-const resolvers = require('./resolvers')
 const typeDefs = require('./typeDefs')
+const resolvers = require('./resolvers')
+const { verifyUser } = require('./helper/context')
 const apolloServer = new ApolloServer({
   typeDefs,
-  resolvers
+  resolvers,
+  context: async ({ req }) => {
+    await verifyUser(req)
+    return { email: req.email, loggedInUserId: req.loggedInUserId }
+  }
 })
 apolloServer.applyMiddleware({ app, path: '/graphql' })
 

@@ -54,7 +54,25 @@ module.exports = {
         console.log('getRecipesByName:', error)
         throw error
       }
-    })
+    }),
+    getRecipesByIngredient: combineResolvers(
+      isAuthenticated,
+      async (_, { ingredient }) => {
+        try {
+          const recipes = await Recipe.findAll({
+            where: {
+              ingredients: {
+                [Op.iLike]: `%${ingredient}%`
+              }
+            }
+          })
+          return recipes
+        } catch (error) {
+          console.log('getRecipesByIngredient:', error)
+          throw error
+        }
+      }
+    )
   },
   Mutation: {
     createRecipe: combineResolvers(

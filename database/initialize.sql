@@ -1,0 +1,44 @@
+CREATE TABLE Categories (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR UNIQUE NOT NULL,
+  "createdAt" TIMESTAMP NOT NULL,
+  "updatedAt" TIMESTAMP NOT NULL,
+  "deletedAt" TIMESTAMP
+);
+CREATE TABLE Users (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR NOT NULL,
+  email VARCHAR NOT NULL,
+  password VARCHAR NOT NULL,
+  "createdAt" TIMESTAMP NOT NULL,
+  "updatedAt" TIMESTAMP NOT NULL,
+  "deletedAt" TIMESTAMP
+);
+CREATE TABLE Recipes (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR NOT NULL,
+  description VARCHAR NOT NULL,
+  ingredients VARCHAR NOT NULL,
+  "categoryId" INT NOT NULL,
+  "userId" INT NOT NULL,
+  "createdAt" TIMESTAMP NOT NULL,
+  "updatedAt" TIMESTAMP NOT NULL,
+  "deletedAt" TIMESTAMP,
+  FOREIGN KEY ("categoryId") REFERENCES Categories (id),
+  FOREIGN KEY ("userId") REFERENCES Users (id)
+);
+INSERT INTO Categories (name, "createdAt", "updatedAt")
+VALUES ('Varios', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+  ('Salidas', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+  ('Salud', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+  (
+    'Servicios',
+    CURRENT_TIMESTAMP,
+    CURRENT_TIMESTAMP
+  ),
+  ('Shopping', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+  (
+    'Supermercado',
+    CURRENT_TIMESTAMP,
+    CURRENT_TIMESTAMP
+  );
