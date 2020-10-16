@@ -31,13 +31,14 @@ apolloServer.applyMiddleware({ app, path: '/graphql' })
 app.use('/', (req, res, next) => res.send('Hello Puzzle'))
 
 //? SERVER
+const port = process.env.PORT || 3000
 const server = async () => {
   try {
     await db.authenticate()
     console.log(`Postgres: http://${db.config.host}:${db.config.port}`)
-    await app.listen(PORT)
-    console.log(`Express: http://localhost:${PORT}`)
-    console.log(`Apollo: http://localhost:${PORT}${apolloServer.graphqlPath}`)
+    await app.listen(port)
+    console.log(`Express: http://localhost:${port}`)
+    console.log(`Apollo: http://localhost:${port}${apolloServer.graphqlPath}`)
   } catch (error) {
     console.log(error)
   }
