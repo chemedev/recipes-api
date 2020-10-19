@@ -1,0 +1,77 @@
+query getRecipes {
+  getRecipes {
+    id
+    name
+    description
+    ingredients
+  }
+}
+
+query getOneRecipe {
+  getOneRecipe(id: 1) {
+    name
+  }
+}
+
+query getMyRecipes {
+  getMyRecipes {
+    name
+  }
+}
+
+query getRecipesByName {
+  getRecipesByName(name: "uis") {
+    id
+    name
+    ingredients
+  }
+}
+
+query getRecipesByIngredient {
+  getRecipesByIngredient(ingredient: "Salsa") {
+    id
+    name
+    ingredients
+  }
+}
+
+mutation createRecipe {
+  createRecipe(
+    input: {
+      name: "Ravioles"
+      description: "Pastas super ricas"
+      ingredients: "Ravioles, Salsa"
+      categoryId: 1
+    }
+  ) {
+    id
+    name
+    description
+    ingredients
+    user {
+      id
+    }
+  }
+}
+
+mutation updateRecipe {
+  updateRecipe(
+    id: 1
+    input: { name: "Ravioles", ingredients: "Ravioles, Salsita" }
+  ) {
+    id
+    name
+    description
+    ingredients
+    user {
+      id
+    }
+  }
+}
+
+mutation deleteRecipe {
+  deleteRecipe(id: 2) {
+    id
+    name
+  }
+}

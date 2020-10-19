@@ -1,0 +1,41 @@
+query getUser {
+  getUser {
+    id
+    name
+    email
+    recipes {
+      id
+      name
+    }
+  }
+}
+
+query getUsers {
+  getUsers {
+    name
+  }
+}
+
+mutation signUp {
+  signUp(
+    input: { name: "Juan Chemello", email: "juan@email.com", password: "juan" }
+  ) {
+    id
+    name
+    email
+    createdAt
+    updatedAt
+    recipes {
+      id
+      name
+      description
+      ingredients
+    }
+  }
+}
+
+mutation login {
+  login(input: { email: "juan@email.com", password: "juan" }) {
+    token
+  }
+}

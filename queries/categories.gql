@@ -1,0 +1,36 @@
+query getCategories {
+  getCategories {
+    id
+    name
+    updatedAt
+  }
+}
+
+query getOneCategory {
+  getOneCategory(id: 1) {
+    name
+    recipes {
+      name
+    }
+  }
+}
+
+mutation createCategory {
+  createCategory(input: { name: "Extras" }) {
+    name
+  }
+}
+
+mutation updateCategory {
+  updateCategory(id: 6, input: { name: "Fáciles" }) {
+    id
+    name
+  }
+}
+
+mutation deleteCategory {
+  deleteCategory(id: 10) {
+    id
+    name
+  }
+}
