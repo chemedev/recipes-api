@@ -28,7 +28,7 @@ module.exports = {
     }),
     getMyRecipes: combineResolvers(
       isAuthenticated,
-      async (_, __, { loggedInUserId }) => {
+      async (_, {__}, { loggedInUserId }) => {
         try {
           const recipes = await Recipe.findAll({
             where: { userId: loggedInUserId }
